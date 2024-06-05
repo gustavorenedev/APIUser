@@ -1,11 +1,7 @@
 ﻿using ProjectFor7COMm.Models;
 using ProjectFor7COMm.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectFor7COMm.Services
 {

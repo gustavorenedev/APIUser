@@ -1,5 +1,4 @@
-﻿using ProjectFor7COMm.DTOs;
-using ProjectFor7COMm.Models;
+﻿using ProjectFor7COMm.Models;
 
 namespace ProjectFor7COMm.Services
 {
