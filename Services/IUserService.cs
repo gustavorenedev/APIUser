@@ -11,6 +11,6 @@ namespace ProjectFor7COMm.Services
         Task<bool> ValidateUser(string username, string password);
         Task<bool> ResetPassword(string email, string newPassword);
         Task<bool> DeleteUser(int id);
-        Task<bool> UpdateUser(int id, User user);
+        Task<bool> UpdateUser(User user);
     }
 }
