@@ -4,9 +4,6 @@ namespace ProjectFor7COMm.DTOs
 {
     public class UpdateUserDTO
     {
-        [Required(ErrorMessage = "O Id do usuário é obrigatório.")]
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "O nome de usuário é obrigatório.")]
         public string Username { get; set; }
 

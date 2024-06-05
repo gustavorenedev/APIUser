@@ -23,6 +23,11 @@ namespace ProjectFor7COMm.Repositories
             return await _context.Users.FindAsync(id);
         }
 
+        public async Task<User> GetByEmail(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(e => e.Email == email);
+        }
+
         public async Task Add(User request)
         {
             await _context.Users.AddAsync(request);
