@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectFor7COMm.Data;
+using ProjectFor7COMm.Models;
+using ProjectFor7COMm.Repositories;
+using ProjectFor7COMm.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,9 @@ builder.Services.AddDbContext<DataContext>(o =>
 {
     o.UseOracle(builder.Configuration.GetConnectionString("OracleConnection"));
 });
+
+builder.Services.AddScoped(typeof(IRepository<User>), typeof(UserRepository));
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
