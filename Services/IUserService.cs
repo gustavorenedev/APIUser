@@ -8,5 +8,7 @@ namespace ProjectFor7COMm.Services
         Task<User> GetUserById(int id);
         Task RegisterUser(User user, string password);
         Task<bool> ValidateUser(string username, string password);
+        Task<bool> ResetPassword(string email, string newPassword);
+        Task<bool> DeleteUser(int id);
     }
 }

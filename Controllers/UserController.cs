@@ -55,5 +55,25 @@ namespace ProjectFor7COMm.Controllers
 
             return Ok(user);
         }
+
+        [HttpPut("reset-password")]
+        public async Task<IActionResult> ResetPassword(PasswordResetDTO request)
+        {
+            var result = await _userService.ResetPassword(request.Email, request.NewPassword);
+            if (!result)
+                return BadRequest("Invalid email address.");
+
+            return Ok("Password reset successfully.");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var result = await _userService.DeleteUser(id);
+            if (!result)
+                return NotFound("User not found.");
+
+            return Ok("User deleted successfully.");
+        }
     }
 }

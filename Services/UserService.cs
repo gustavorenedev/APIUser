@@ -65,5 +65,31 @@ namespace ProjectFor7COMm.Services
             }
             return true;
         }
+
+        public async Task<bool> ResetPassword(string email, string newPassword)
+        {
+            var userList = await _userRepository.GetAll();
+            var user = userList.FirstOrDefault(u => u.Email == email);
+
+            if (user == null)
+                return false;
+
+            CreatePasswordHash(newPassword, out byte[] passwordHash, out byte[] passwordSalt);
+            user.PasswordHash = Convert.ToBase64String(passwordHash);
+            user.PasswordSalt = Convert.ToBase64String(passwordSalt);
+
+            await _userRepository.Update(user);
+            return true;
+        }
+
+        public async Task<bool> DeleteUser(int id)
+        {
+            var user = await _userRepository.GetById(id);
+            if (user == null)
+                return false;
+
+            await _userRepository.Delete(id);
+            return true;
+        }
     }
 }
