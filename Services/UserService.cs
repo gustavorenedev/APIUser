@@ -91,5 +91,31 @@ namespace ProjectFor7COMm.Services
             await _userRepository.Delete(id);
             return true;
         }
+
+        public async Task<bool> UpdateUser(User user)
+        {
+            try
+            {
+                // Verifica se o usuário existe no banco de dados
+                var existingUser = await _userRepository.GetById(user.Id);
+                if (existingUser == null)
+                    return false; // Se não existir, retorna false indicando falha na atualização
+
+                // Atualiza os campos necessários do usuário existente
+                existingUser.Username = user.Username;
+                existingUser.Email = user.Email;
+
+                // Chama o método de atualização do repositório
+                await _userRepository.Update(existingUser);
+
+                return true; // Retorna true indicando sucesso na atualização
+            }
+            catch (Exception ex)
+            {
+                // Manipulação de exceções, registro de logs, etc.
+                return false; // Retorna false indicando falha na atualização em caso de exceção
+            }
+        }
+
     }
 }

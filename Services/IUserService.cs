@@ -1,4 +1,5 @@
-﻿using ProjectFor7COMm.Models;
+﻿using ProjectFor7COMm.DTOs;
+using ProjectFor7COMm.Models;
 
 namespace ProjectFor7COMm.Services
 {
@@ -10,5 +11,6 @@ namespace ProjectFor7COMm.Services
         Task<bool> ValidateUser(string username, string password);
         Task<bool> ResetPassword(string email, string newPassword);
         Task<bool> DeleteUser(int id);
+        Task<bool> UpdateUser(User user);
     }
 }

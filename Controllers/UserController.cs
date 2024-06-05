@@ -2,6 +2,7 @@
 using ProjectFor7COMm.DTOs;
 using ProjectFor7COMm.Models;
 using ProjectFor7COMm.Services;
+using System;
 
 namespace ProjectFor7COMm.Controllers
 {
@@ -19,61 +20,127 @@ namespace ProjectFor7COMm.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO request)
         {
-            var user = new User
+            try
             {
-                Username = request.Username,
-                Email = request.Email
-            };
+                var user = new User
+                {
+                    Username = request.Username,
+                    Email = request.Email
+                };
 
-            await _userService.RegisterUser(user, request.Password);
-            return StatusCode(201);
+                await _userService.RegisterUser(user, request.Password);
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDTO request)
         {
-            var isValid = await _userService.ValidateUser(request.Username, request.Password);
-            if (!isValid)
-                return Unauthorized();
+            try
+            {
+                var isValid = await _userService.ValidateUser(request.Username, request.Password);
+                if (!isValid)
+                    return Unauthorized();
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _userService.GetAllUsers();
-            return Ok(users);
+            try
+            {
+                var users = await _userService.GetAllUsers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _userService.GetUserById(id);
-            if (user == null)
-                return NotFound();
+            try
+            {
+                var user = await _userService.GetUserById(id);
+                if (user == null)
+                    return NotFound();
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpPut("reset-password")]
         public async Task<IActionResult> ResetPassword(PasswordResetDTO request)
         {
-            var result = await _userService.ResetPassword(request.Email, request.NewPassword);
-            if (!result)
-                return BadRequest("Invalid email address.");
+            try
+            {
+                var result = await _userService.ResetPassword(request.Email, request.NewPassword);
+                if (!result)
+                    return BadRequest("Invalid email address.");
 
-            return Ok("Password reset successfully.");
+                return Ok("Password reset successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var result = await _userService.DeleteUser(id);
-            if (!result)
-                return NotFound("User not found.");
+            try
+            {
+                var result = await _userService.DeleteUser(id);
+                if (!result)
+                    return NotFound("User not found.");
 
-            return Ok("User deleted successfully.");
+                return Ok("User deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUser(UpdateUserDTO request)
+        {
+            try
+            {
+                var user = new User
+                {
+                    Id = request.Id,
+                    Username = request.Username,
+                    Email = request.Email
+                };
+
+                var result = await _userService.UpdateUser(user);
+                if (!result)
+                    return BadRequest("Failed to update user.");
+
+                return Ok("User updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
     }
 }

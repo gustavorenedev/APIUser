@@ -1,14 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectFor7COMm.DTOs
 {
     public class RegisterDTO
     {
-        [Required]
+        [Required(ErrorMessage = "O nome de usuário é obrigatório.")]
         public string Username { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "O email é obrigatório.")]
+        [EmailAddress(ErrorMessage = "Formato de email inválido.")]
         public string Email { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "A senha é obrigatória.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

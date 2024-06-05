@@ -8,5 +8,12 @@ namespace ProjectFor7COMm.Data
         public DataContext(DbContextOptions<DataContext> Options) : base(Options) { }
 
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+        }
     }
 }
