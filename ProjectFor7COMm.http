@@ -1,0 +1,6 @@
+@ProjectFor7COMm_HostAddress = http://localhost:5055
+
+GET {{ProjectFor7COMm_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
