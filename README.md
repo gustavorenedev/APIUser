@@ -36,7 +36,7 @@ Esta API permite aos usuários realizar várias operações, como registro, logi
 - **Descrição:** Excluir usuário por ID.
 
 ### Atualizar Usuário
-- **URL:** `/api/user/update`
+- **URL:** `/api/user/update?id=`
 - **Método:** `PUT`
 - **Descrição:** Atualizar informações do usuário.
 
