@@ -120,18 +120,18 @@ namespace ProjectFor7COMm.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateUser(UpdateUserDTO request)
+        public async Task<IActionResult> UpdateUser(int id, UpdateUserDTO request)
         {
             try
             {
                 var user = new User
                 {
-                    Id = request.Id,
+                    Id = id,
                     Username = request.Username,
                     Email = request.Email
                 };
 
-                var result = await _userService.UpdateUser(user);
+                var result = await _userService.UpdateUser(id, user);
                 if (!result)
                     return BadRequest("Failed to update user.");
 
