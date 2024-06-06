@@ -26,12 +26,6 @@ namespace ProjectFor7COMm.Models
         [Column("PasswordHash")]
         public string PasswordHash { get; set; }
 
-        [NotMapped]
-        [Required(ErrorMessage = "Confirme sua senha.")]
-        [Compare("PasswordHash", ErrorMessage = "As senhas não coincidem.")]
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
-
         [Required(ErrorMessage = "O salt da senha é obrigatório.")]
         [Column("PasswordSalt")]
         public string PasswordSalt { get; set; }
