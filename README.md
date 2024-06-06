@@ -10,10 +10,25 @@ Esta API permite aos usuários realizar várias operações, como registro, logi
 - **Método:** `POST`
 - **Descrição:** Registrar um novo usuário.
 
+```json
+{
+  "username": "jorge",
+  "email": "jorge@gmail.com",
+  "password": "jorge"
+}
+```
+
 ### Login
 - **URL:** `/api/user/login`
 - **Método:** `POST`
 - **Descrição:** Login com nome de usuário e senha.
+
+```json
+{
+  "username": "jorgin",
+  "password": "jorgin"
+}
+```
 
 ### Obter Usuários
 - **URL:** `/api/user`
@@ -30,6 +45,13 @@ Esta API permite aos usuários realizar várias operações, como registro, logi
 - **Método:** `PUT`
 - **Descrição:** Redefinir senha do usuário.
 
+```json
+{
+  "email": "jorge123@gmail.com",
+  "newPassword": "jorgin"
+}
+```
+
 ### Excluir Usuário
 - **URL:** `/api/user/{id}`
 - **Método:** `DELETE`
@@ -39,6 +61,13 @@ Esta API permite aos usuários realizar várias operações, como registro, logi
 - **URL:** `/api/user/update?id=`
 - **Método:** `PUT`
 - **Descrição:** Atualizar informações do usuário.
+
+```json
+{
+  "username": "jorgin",
+  "email": "luis@example.com"
+}
+```
 
 ## Importação e Configuração
 
@@ -54,6 +83,6 @@ Para usar esta API, você precisa seguir estas etapas:
 
 5. **Executar Migrações:** Execute as migrações do banco de dados para criar as tabelas necessárias. Você pode usar as migrações do Entity Framework Core para isso.
 
-6. **Instalar o Insomnia (Opcional):** Se desejar testar os endpoints da API, você pode instalar o Insomnia, importar a coleção fornecida e começar a testar.
+6. **Instalar o Insomnia (Opcional):** Se desejar testar os endpoints da API, você pode instalar o Insomnia, importar a coleção fornecida e começar a testar(Existe um arquivo json com todos os endpoints no insomnia).
 
 7. **Executar a Aplicação:** Inicie a aplicação e teste os endpoints usando o método de sua preferência.
